@@ -14,4 +14,4 @@ MarkupSafe==2.0.1
 plotly==5.5.0
 six==1.16.0
 tenacity==8.0.1
-Werkzeug==2.0.2
+Werkzeug==1.0.1
