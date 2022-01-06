@@ -316,4 +316,4 @@ def update_graph_live(n):
 
 
 if __name__ == '__main__':
-    app.run_server(dev_tools_hot_reload=True)
+    server.run()
