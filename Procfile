@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn app:server --bind=127.0.0.1:8050
