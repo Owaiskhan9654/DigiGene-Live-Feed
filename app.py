@@ -318,8 +318,8 @@ def update_graph_live(n):
     return fig
 
 
-executor = ThreadPoolExecutor(max_workers=1)
-executor.submit(update_data)
+#executor = ThreadPoolExecutor(max_workers=1)
+#executor.submit(update_data)
 app = DispatcherMiddleware(server, {
     '/dash1': dashApp.server,
 })
