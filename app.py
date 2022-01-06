@@ -1,5 +1,5 @@
 import datetime
-import flask
+from flask import Flask, redirect, render_template
 import dash
 from dash import dcc
 from dash import html
@@ -7,23 +7,24 @@ from plotly import subplots
 from dash.dependencies import Input, Output
 import http.client
 import json
-
+from werkzeug.serving import run_simple
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 external_stylesheets = [
     'https://github.com/Owaiskhan9654/DigiGene/blob/bdf66f620f8b75b59f7a4e4687508ec908b9a6c8/DigiGene.css']
 
 
-server = flask.Flask(__name__)
+server = Flask(__name__)
 
 @server.route('/')
 def index():
     return 'Hello User.. Please add proper URL to move to DigiGene Web app'
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets,title="DigiGene Live Feed Web Based Data Analysis Application",
+dashApp = dash.Dash(__name__, external_stylesheets=external_stylesheets,title="DigiGene Live Feed Web Based Data Analysis Application",
     server=server,
     routes_pathname_prefix='/DigiGene/')
-app._favicon = "favico.ico"
-app.layout = html.Div(
+dashApp._favicon = "favico.ico"
+dashApp.layout = html.Div(
     html.Div([
         html.Div(id='live-update-text', style={'padding': '5px', 'fontSize': '32px', 'textAlign': 'center',
                                                'backgroundColor': 'rgb(17, 17, 17)', 'color': 'white'}),
@@ -41,7 +42,7 @@ def rgb_to_hex(r, g, b):
     return ('{:x}{:x}{:x}').format(r, g, b)
 
 
-@app.callback(Output('live-update-text', 'children'),
+@dashApp.callback(Output('live-update-text', 'children'),
               Input('interval-component', 'n_intervals'))
 def update_metrics(n):
     # Current_color = open("Current_color.txt","r")
@@ -134,7 +135,7 @@ def update_metrics(n):
 # '+str(int(RedSensor1))+','+str(int(GreenSensor1))+ ','+str(int(BlueSensor1))+'
 
 # Multiple components can update everytime interval gets fired.
-@app.callback(Output('live-update-graph', 'figure'),
+@dashApp.callback(Output('live-update-graph', 'figure'),
               Input('interval-component', 'n_intervals'))
 def update_graph_live(n):
     data = {
@@ -315,5 +316,15 @@ def update_graph_live(n):
     return fig
 
 
+executor = ThreadPoolExecutor(max_workers=1)
+executor.submit(update_data)
+app = DispatcherMiddleware(server, {
+    '/dash1': dashApp.server,
+})
 if __name__ == '__main__':
-     app.run_server(dev_tools_hot_reload=True)
+    @server.route('/DigiGene')
+    def render_dashboard():
+        return redirect('/dash1')
+
+
+    run_simple('127.0.0.32', 5000, app, use_reloader=True, use_debugger=True)
