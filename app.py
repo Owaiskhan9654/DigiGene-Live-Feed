@@ -60,7 +60,7 @@ def update_metrics(n):
     data_pantry = res.read()
 
     data_pantry = json.loads(data_pantry.decode('utf-8'))
-    Current_color = data_pantry["current"]
+    Current_color = data_pantry["Current"]
 
     def int_custom(a):
         try:
@@ -113,7 +113,7 @@ def update_metrics(n):
                                      'textAlign': 'center', }, className='col s6 m6', ),
                      html.Div('                 ',
                               style={'backgroundColor': Sensor1_name, 'padding': '35px', 'fontSize': '32px',
-                                     'textAlign': 'center', 'borderRadius': '15px', }, className='col s6 m6', ),
+                                     'textAlign': 'center', 'borderRadius': '15px','border': 'solid white 1px' }, className='col s6 m6', ),
 
                      html.Div('Sensor 2 Color',
                               style={'color': 'white', 'backgroundColor': 'rgb(17, 17, 17)', 'padding': '35px',
@@ -121,7 +121,7 @@ def update_metrics(n):
                                      'textAlign': 'center', }, className='col s6 m6', ),
                      html.Div('               ',
                               style={'backgroundColor': Sensor2_name, 'padding': '35px', 'fontSize': '32px',
-                                     'textAlign': 'center', 'borderRadius': '15px', }, className='col s6 m6', ),
+                                     'textAlign': 'center', 'borderRadius': '15px','border': 'solid white 1px' }, className='col s6 m6', ),
 
                      html.Div('Sensor 3 Color',
                               style={'color': 'white', 'backgroundColor': 'rgb(17, 17, 17)', 'padding': '35px',
@@ -130,7 +130,7 @@ def update_metrics(n):
 
                      html.Div('               ',
                               style={'backgroundColor': Sensor3_name, 'padding': '35px', 'fontSize': '32px',
-                                     'textAlign': 'center', 'borderRadius': '15px', }, className='col s6 m6', )])
+                                     'textAlign': 'center', 'borderRadius': '15px','border': 'solid white 1px' }, className='col s6 m6', )])
     ]
 
 
@@ -169,7 +169,7 @@ def update_graph_live(n):
         data_pantry = res.read()
 
         data_pantry = json.loads(data_pantry.decode('utf-8'))
-        Current_color = data_pantry["current"]
+        Current_color = data_pantry["Current"]
 
         def int_custom(a):
             try:
