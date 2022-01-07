@@ -60,7 +60,7 @@ def update_metrics(n):
     data_pantry = res.read()
 
     data_pantry = json.loads(data_pantry.decode('utf-8'))
-    Current_color = data_pantry["current"]
+    Current_color = data_pantry["Current"]
 
     def int_custom(a):
         try:
@@ -169,7 +169,7 @@ def update_graph_live(n):
         data_pantry = res.read()
 
         data_pantry = json.loads(data_pantry.decode('utf-8'))
-        Current_color = data_pantry["current"]
+        Current_color = data_pantry["Current"]
 
         def int_custom(a):
             try:
