@@ -3,7 +3,8 @@ import os
 import http.client
 import json
 def colorfetch():
-    arduino_data_connection = serial.Serial('COM3', 9800)
+    com = input("Please Enter Port Number:  ")
+    arduino_data_connection = serial.Serial('COM'+com, 9800)
     datalist = []
     j = True
     i = 0
