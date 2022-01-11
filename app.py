@@ -19,7 +19,7 @@ server = flask.Flask(__name__)
 
 @server.route('/')
 def index():
-    global data
+    del data
     data = {
         'time': [],
         'Red Sensor 1': [],
