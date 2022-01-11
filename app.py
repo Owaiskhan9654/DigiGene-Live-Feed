@@ -9,9 +9,7 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as  dbc
 import http.client
 import json
-from werkzeug.serving import run_simple
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
+
 
 external_stylesheets = [
     'https://github.com/Owaiskhan9654/DigiGene/blob/bdf66f620f8b75b59f7a4e4687508ec908b9a6c8/DigiGene.css']
@@ -19,8 +17,12 @@ external_stylesheets = [
 
 server = flask.Flask(__name__)
 
-@server.route('/home')
+@server.route('/')
 def index():
+    try:
+        del data
+    else:
+        pass
     global data
     data = {
         'time': [],
@@ -38,10 +40,10 @@ def index():
 
     return render_template('index1.html')
 
-dashApp  = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],title="DigiGene Live Feed Web Based Data Analysis Application",
+app  = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],title="DigiGene Live Feed Web Based Data Analysis Application",
     server=server,
     routes_pathname_prefix='/DigiGene/')
-dashApp ._favicon = "favico.ico"
+app._favicon = "favico.ico"
 red_button_style = {'background-color': 'red',
                     'color': 'white',
                     'height': '50px',
@@ -118,7 +120,7 @@ summary = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody([
 
 
 
-dashApp.layout = html.Div(children=[
+app.layout = html.Div(children=[
     heading,
     html.Div([
 
@@ -139,7 +141,7 @@ def rgb_to_hex(r, g, b):
     return ('{:x}{:x}{:x}').format(r, g, b)
 
 
-@dashApp.callback(Output('live-update-text', 'children'),
+@app.callback(Output('live-update-text', 'children'),
               Input('interval-component', 'n_intervals'))
 def update_metrics(n):
     print(n)
@@ -263,7 +265,7 @@ def update_metrics(n):
                                      'textAlign': 'center', 'borderRadius': '15px', }, className='col s6 m6', )],
 
                  ),
-        html.A(html.Button('Reset Plots',style=red_button_style), href='/home'),
+        html.A(html.Button('Reset Plots',style=red_button_style), href='/'),
     ]
 
 
@@ -285,7 +287,7 @@ data= {
 }
 
 
-@dashApp.callback(Output('live-update-graph', 'figure'),
+@app.callback(Output('live-update-graph', 'figure'),
               Input('interval-component', 'n_intervals'))
 def update_graph_live(n):
 
@@ -453,15 +455,7 @@ def update_graph_live(n):
         fig['layout']['yaxis{}'.format(i)]['title'] = 'RGB Value'
     return fig
 
-
-app = DispatcherMiddleware(server, {
-    '/dash1': dashApp.server,
-})
 if __name__ == '__main__':
-    @server.route('/DigiGene')
-    def render_dashboard():
-        return redirect('/dash1')
+    app.server.run(debug=True, threaded=True)
 
-
-    run_simple('127.0.0.32', 5000, app, use_reloader=True, use_debugger=False)
 
