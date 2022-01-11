@@ -222,9 +222,9 @@ def update_metrics(n):
                                      'textAlign': 'center', 'borderRadius': '15px', }, className='col s6 m6', )],
 
                  ),
-        html.Div(dbc.Button("Stop",id="link-centered",href='/home') ,style={'padding-top': '35px', 'fontSize': '32px',
-               'textAlign': 'center', 'borderRadius': '15px', }
-    )
+               html.A(html.Button('Reset Plots',outline=True, color="danger", className="me-1" ,
+                           style={'padding-top': '35px', 'fontSize': '32px','textAlign': 'center',
+                                  'borderRadius': '15px', }), href='/home'),
     ]
 
 
