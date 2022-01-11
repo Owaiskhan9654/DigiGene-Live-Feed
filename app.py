@@ -21,7 +21,7 @@ server = flask.Flask(__name__)
 def index():
     try:
         del data
-    else:
+    except:
         pass
     global data
     data = {
