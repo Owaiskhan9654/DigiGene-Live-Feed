@@ -19,33 +19,19 @@ server = flask.Flask(__name__)
 
 @server.route('/')
 def index():
-    try:
-        del data
-        data = {
-            'time': [],
-            'Red Sensor 1': [],
-            'Green Sensor 1': [],
-            'Blue Sensor 1': [],
-            'Red Sensor 2': [],
-            'Green Sensor 2': [],
-            'Blue Sensor 2': [],
-            'Red Sensor 3': [],
-            'Green Sensor 3': [],
-            'Blue Sensor 3': [],
-        }
-    except:
-        data = {
-            'time': [],
-            'Red Sensor 1': [],
-            'Green Sensor 1': [],
-            'Blue Sensor 1': [],
-            'Red Sensor 2': [],
-            'Green Sensor 2': [],
-            'Blue Sensor 2': [],
-            'Red Sensor 3': [],
-            'Green Sensor 3': [],
-            'Blue Sensor 3': [],
-        }
+    global data
+    data = {
+        'time': [],
+        'Red Sensor 1': [],
+        'Green Sensor 1': [],
+        'Blue Sensor 1': [],
+        'Red Sensor 2': [],
+        'Green Sensor 2': [],
+        'Blue Sensor 2': [],
+        'Red Sensor 3': [],
+        'Green Sensor 3': [],
+        'Blue Sensor 3': [],
+    }
 
 
     return render_template('index1.html')
