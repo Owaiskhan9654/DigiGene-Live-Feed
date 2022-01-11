@@ -42,6 +42,13 @@ dashApp  = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],title
     server=server,
     routes_pathname_prefix='/DigiGene/')
 dashApp ._favicon = "favico.ico"
+red_button_style = {'background-color': 'red',
+                    'color': 'white',
+                    'height': '50px',
+                    'width': '100px',
+                    'margin-top': '50px',
+                    'margin-left': '50px',
+                    'borderRadius': '15px'}
 
 company_logo = html.A(dbc.CardImg(src="assets/images/faster_Canary_logo_White-animation.gif", top=True, className='image_link'), href='https://www.canarydetect.com/', target="_blank", className='image_1')
 company_logo_footer = html.A(dbc.CardImg(src="assets/images/faster_Canary_logo_White-animation.gif", top=True, className='image_link_footer'), href='https://www.canarydetect.com/', target="_blank", className='image_link_footer')
@@ -256,9 +263,7 @@ def update_metrics(n):
                                      'textAlign': 'center', 'borderRadius': '15px', }, className='col s6 m6', )],
 
                  ),
-               html.A(html.Button('Reset Plots', color="danger", className="me-1" ,
-                           style={'padding-top': '35px', 'fontSize': '32px','textAlign': 'center',
-                                  'borderRadius': '15px', }), href='/home'),
+        html.A(html.Button('Reset Plots',style=red_button_style), href='/home'),
     ]
 
 
