@@ -337,18 +337,33 @@ def update_graph_live(n):
     # RedSensor3 = random.randint(1, 25)
     # GreenSensor3 = random.randint(1, 55)
     # BlueSensor3 = random.randint(1, 35)
-    data['Red Sensor 1'].append(RedSensor1)
-    data['Green Sensor 1'].append(GreenSensor1)
-    data['Blue Sensor 1'].append(BlueSensor1)
+    try:
+        data['Red Sensor 1'].append(RedSensor1)
+        data['Green Sensor 1'].append(GreenSensor1)
+        data['Blue Sensor 1'].append(BlueSensor1)
 
-    data['Red Sensor 2'].append(RedSensor2)
-    data['Green Sensor 2'].append(GreenSensor2)
-    data['Blue Sensor 2'].append(BlueSensor2)
+        data['Red Sensor 2'].append(RedSensor2)
+        data['Green Sensor 2'].append(GreenSensor2)
+        data['Blue Sensor 2'].append(BlueSensor2)
 
-    data['Red Sensor 3'].append(RedSensor3)
-    data['Green Sensor 3'].append(GreenSensor3)
-    data['Blue Sensor 3'].append(BlueSensor3)
-    data['time'].append(time)
+        data['Red Sensor 3'].append(RedSensor3)
+        data['Green Sensor 3'].append(GreenSensor3)
+        data['Blue Sensor 3'].append(BlueSensor3)
+        data['time'].append(time)
+        
+    except:
+        data= {
+            'time': [],
+            'Red Sensor 1': [],
+            'Green Sensor 1': [],
+            'Blue Sensor 1': [],
+            'Red Sensor 2': [],
+            'Green Sensor 2': [],
+            'Blue Sensor 2': [],
+            'Red Sensor 3': [],
+            'Green Sensor 3': [],
+            'Blue Sensor 3': [],
+        }
 
     # Create the graph with subplots
     fig = subplots.make_subplots(rows=1, cols=3, vertical_spacing=0.2, subplot_titles=[
