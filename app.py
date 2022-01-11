@@ -170,6 +170,38 @@ def update_metrics(n):
     GreenSensor3 = Current_color[9]
     BlueSensor3 = Current_color[10]
 
+    max_sensor1 = max(RedSensor1,GreenSensor1,BlueSensor1)
+    max_sensor2 = max(RedSensor2, GreenSensor2, BlueSensor2)
+    max_sensor3 = max(RedSensor3, GreenSensor3, BlueSensor3)
+    if (max_sensor1 == RedSensor1):
+        hue1=(1/6) * (GreenSensor1-BlueSensor1)/RedSensor1
+
+    elif (max_sensor1 == GreenSensor1):
+        hue1=(1/3) +1/6*(BlueSensor1-RedSensor1)/GreenSensor1
+
+    elif (max_sensor1 == BlueSensor1):
+        hue1 = (2/3) +1/6*(RedSensor1-GreenSensor1)/BlueSensor1
+
+    if (max_sensor2 == RedSensor2):
+        hue2=(1/6) * (GreenSensor2-BlueSensor2)/RedSensor2
+
+    elif (max_sensor2 == GreenSensor2):
+        hue2=(1/3) +1/6*(BlueSensor2-RedSensor2)/GreenSensor2
+
+    elif (max_sensor2 == BlueSensor2):
+        hue2 = (2/3) +1/6*(RedSensor2-GreenSensor2)/BlueSensor2
+
+
+    if (max_sensor3 == RedSensor3):
+        hue3=(1/6) * (GreenSensor3-BlueSensor3)/RedSensor3
+
+    elif (max_sensor3 == GreenSensor3):
+        hue3=(1/3) +1/6*(BlueSensor3-RedSensor3)/GreenSensor3
+
+    elif (max_sensor3 == BlueSensor3):
+        hue3 = (2/3) +1/6*(RedSensor3-GreenSensor3)/BlueSensor3
+
+
     # print('RedSensor1 ',Current_color[0],'GreenSensor1 ',Current_color[1],'BlueSensor1 ', Current_color[2])
     Sensor1_name = '#' + rgb_to_hex(RedSensor1, GreenSensor1, BlueSensor1)
     Sensor2_name = '#' + rgb_to_hex(RedSensor2, GreenSensor2, BlueSensor2)
@@ -178,19 +210,21 @@ def update_metrics(n):
              'color': 'white'}
     return [
 
-        html.Span('DigiGene Live Feed Web Based Data Analysis Application', style=style),
+        html.Span('DIGIGene Live Feed Web Based Data Analysis Application', style=style),
         html.Br(),
         html.Span('Sensor 1:  Red {0:.2f}, Sensor 1: Green {1:.2f}, Sensor 1: Blue {2:.2f}, Green1/Blue1: {3:.2f},\
-        Blue1/Red1: {4:.2f}'.format(RedSensor1, GreenSensor1, BlueSensor1, GreenSensor1 / BlueSensor1,
-                                    BlueSensor1 / RedSensor1, )
+        Blue1/Red1: {4:.2f}, Hue Sensor 1 {5:.2f} '.format(RedSensor1, GreenSensor1, BlueSensor1, GreenSensor1 / BlueSensor1,
+                                    BlueSensor1 / RedSensor1, hue1)
                   , style=style),
         html.Br(),
-        html.Span('Sensor 2: Red {0:.2f} , Sensor 2: Green {1:.2f}, Sensor 2: Blue {2:.2f},Green2/Blue2: {3:.2f},Blue2/Red2: {4:.2f}\
-        '.format(RedSensor2, GreenSensor2, BlueSensor2, GreenSensor2 / BlueSensor2, BlueSensor2 / RedSensor2, ),
+        html.Span('Sensor 2: Red {0:.2f} , Sensor 2: Green {1:.2f}, Sensor 2: Blue {2:.2f},Green2/Blue2: {3:.2f},\
+        Blue2/Red2: {4:.2f} Hue Sensor 2 {5:.2f}'.format(RedSensor2, GreenSensor2, BlueSensor2, GreenSensor2 / BlueSensor2,
+                                                         BlueSensor2 / RedSensor2, hue2),
                   style=style)
         , html.Br(),
-        html.Span('Sensor 3: Red {0:0.2f} , Sensor 3: Green {1:.2f}, Sensor 3: Blue {2:.2f}, Green3/Blue3: {3:.2f},Blue3/Red3: {4:.2f}\
-        '.format(RedSensor3, GreenSensor3, BlueSensor3, GreenSensor3 / BlueSensor3, BlueSensor3 / RedSensor3, ),
+        html.Span('Sensor 3: Red {0:0.2f} , Sensor 3: Green {1:.2f}, Sensor 3: Blue {2:.2f}, Green3/Blue3: {3:.2f},\
+        Blue3/Red3: {4:.2f}, Hue Sensor 3 {5:.2f}'.format(RedSensor3, GreenSensor3, BlueSensor3, GreenSensor3 / BlueSensor3,
+                                                          BlueSensor3 / RedSensor3,hue3 ),
                   style=style),
         html.Br(),
         html.Div(className='row',
