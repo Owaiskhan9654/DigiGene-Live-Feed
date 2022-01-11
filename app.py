@@ -463,10 +463,5 @@ if __name__ == '__main__':
         return redirect('/dash1')
 
 
-    run_simple('127.0.0.32', 5000, app, use_reloader=True, use_debugger=True)
+    run_simple('127.0.0.32', 5000, app, use_reloader=True, use_debugger=False)
 
-conn = http.client.HTTPSConnection("getpantry.cloud")
-payload = json.dumps({"Counter":"0","Current": "0"})
-headers = {'Content-Type': 'application/json'}
-conn.request("PUT", "/apiv1/pantry/2cb1189d-f1e5-4acb-8fba-c86b8282f25f/basket/DigiGeneV1", payload, headers)
-print('Data Reset')
