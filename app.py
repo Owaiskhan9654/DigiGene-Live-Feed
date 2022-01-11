@@ -19,7 +19,9 @@ server = flask.Flask(__name__)
 
 @server.route('/')
 def index():
-    del data
+    var = 'data'
+    g = globals()
+    if var in g: del g[var]
     data = {
         'time': [],
         'Red Sensor 1': [],
