@@ -46,6 +46,7 @@ def index():
             'Red Sensor 3': [],
             'Green Sensor 3': [],
             'Blue Sensor 3': [],
+        }
 
 
     return render_template('index1.html')
