@@ -21,7 +21,6 @@ server = flask.Flask(__name__)
 def index():
     try:
         del data
-        global data
         data = {
             'time': [],
             'Red Sensor 1': [],
