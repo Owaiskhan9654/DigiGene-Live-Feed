@@ -256,7 +256,7 @@ def update_metrics(n):
                                      'textAlign': 'center', 'borderRadius': '15px', }, className='col s6 m6', )],
 
                  ),
-               html.A(html.Button('Reset Plots',outline=True, color="danger", className="me-1" ,
+               html.A(html.Button('Reset Plots', color="danger", className="me-1" ,
                            style={'padding-top': '35px', 'fontSize': '32px','textAlign': 'center',
                                   'borderRadius': '15px', }), href='/home'),
     ]
